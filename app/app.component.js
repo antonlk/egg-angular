@@ -1,22 +1,26 @@
 (function() {
 'use strict';
 
-
+  // Usage:
+  // 
+  // Creates:
+  // 
 
   angular
     .module('App')
-    .component('Component', {
-      template:'',
-      //templateUrl: '../index.html',
-      controller: AppController,
+    .component('appComponent', {
+      //template:'htmlTemplate',
+      templateUrl: 'app/app.component.html',
+      controller: BaseController,
       bindings: {
-      
+        
       },
     });
 
-  //AppController.inject = ['dependency1'];
-  function AppController() {
+  function BaseController() {
     var ctrl = this;
+    
 
+    
   }
 })();

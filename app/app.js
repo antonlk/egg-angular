@@ -4,5 +4,5 @@
   angular.module('App', [
     'Categories',
     'Links'
-  ]);
+  ])
 })();

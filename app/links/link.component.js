@@ -8,16 +8,16 @@
 
   angular
     .module('Links')
-    .component('Link', {
-      template:'htmlTemplate',
-      //templateUrl: 'templateUrl',
+    .component('appLink', {
+      //template:'htmlTemplate',
+      templateUrl: 'app/links/link.component.html',
       controller: LinkController,
       bindings: {
-        Binding: '=',
+        
       },
     });
 
- LinkController.inject = ['LinksService'];
+ LinkController.$inject = ['LinksService'];
   function LinkController(LinkService) {
     var $ctrl = this;
     

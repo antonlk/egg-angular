@@ -1,15 +1,14 @@
-(function () {
-  'use strict';
+(function() {
+'use strict';
 
   angular
     .module('Categories')
     .service('CategoriesService', CategoryService);
 
-  CategoryService.inject = ['$http'];
+  CategoryService.$inject = ['$http'];
   function CategoryService($http) {
-
-    this.getCategories = function () {
-      return $http.get('datos/categories.json');
+    this.getCategories = function(){
+      return $http.get("datos/categories.json");
     }
   }
 })();

@@ -1,33 +1,29 @@
 (function() {
 'use strict';
 
-  // Usage:
-  // 
-  // Creates:
-  // 
 
   angular
     .module('Categories')
-    .component('Category', {
-      template:'htmlTemplate',
-      //templateUrl: 'templateUrl',
+    .component('appCategory', {
+      //template:'',
+      templateUrl: 'app/categories/category.component.html',
       controller: CategoryController,
       bindings: {
-        Binding: '=',
-      },
+        
+      }
     });
 
-  CategryController.inject = ['CategoriesService'];
+  CategoryController.$inject = ['CategoriesService'];
   function CategoryController(CategoryService) {
-    var ctrl = this;
+    var $ctrl = this;
     
-    CategoryService.getCategories().then(
+   CategoryService.getCategories().then(
       function onSuccess(res){
         console.log(res.data);
         $ctrl.categories=res.data;
       },
       function onError(res){
-        
+        console.log("categorias fallo");
       }
     );
     

@@ -9,12 +9,18 @@
     "id": "1",
     "title": "Kitten 1",
     "category": "Kittens",
-    "link":"http://placekitten.com/200/300"
+    "link":"http://placekitten.com/280/360"
   },
  {
     "id": "2",
     "title": "Kitten 2",
     "category": "Kittens",
     "link":"http://placekitten.com/240/360"
+  },
+ {
+    "id": "3",
+    "title": "Pie",
+    "category": "Food",
+    "link":"http://www.guymondailyherald.com/sites/default/files/field/image/apple-pie.jpg"
   }
 ]

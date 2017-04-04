@@ -6,52 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
-  <!-- MENU -->
-  <div class="ui inverted huge menu">
-    <a class="item red disabled">Galery</a>
-    <a href="#" class="teal item">Category</a>
-    <a href="#" class="teal item">Category</a>
-    <a href="#" class="teal item">Category</a>
-  </div>
-  <!-- END MENU -->
-
-  <!-- BODY -->
-  <div class="ui equal width grid stackble center aligned cards">
-    
-    <div class="ui card">
-      <div class="image">
-        <img src="/images/avatar2/large/kristy.png">
-      </div>
-      <div class="content">
-        <a class="header center aligned">Title</a>
-        <div class="ui two buttons center aligned">
-          <button class="ui mini blue button"><i class="pencil icon"></i>Edit</button>
-          <button class="ui mini red button"><i class="remove icon"></i>Delete</button>
-        </div>
-      </div>
-    </div>
-    
-  </div>
-
-  <!-- END BODY -->
-
-  <!-- FOOTER -->
-  <footer></footer>
+<body ng-app="App">
+  <app-component></app-component>
 
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
+  <script src="node_modules/angular/angular.min.js"></script>
   <script src="semantic/semantic.min.js"></script>
-  <script src="app/app.module.js"></script>
+  <script src="app/app.js"></script>
   <script src="app/app.component.js"></script>
   <script src="app/categories/category.module.js"></script>
   <script src="app/categories/category.component.js"></script>
   <script src="app/categories/category.service.js"></script>
   <script src="app/links/link.module.js"></script>
-  <script src="app/links/link.component.js"></script>
   <script src="app/links/link.service.js"></script>
-  
+  <script src="app/links/link.component.js"></script>
+
+
 </body>
 
 </html>
