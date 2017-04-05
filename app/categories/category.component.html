@@ -5,6 +5,7 @@
    {{category.name}}
   </a>
   </span>
+  <a href="#" class="ui item button disabled"><i class="add circle green icon"></i>Add category</a>
 </div>
 
 <!-- BODY -->
@@ -20,11 +21,52 @@ filter:$ctrl.currentCategory.name" style="max-width: 250px;">
     <span class="header center aligned">{{image.title}}</span>
   </div>
   <div class="ui two buttons bottom attached mini center aligned">
-      <button class="ui blue button"><i class="pencil icon"></i>Edit</button>
-      <button class="ui red button"><i class="remove icon"></i>Delete</button>
+      <button id="edit" ng-click="$ctrl.startEditing();" class="ui blue button"><i class="pencil icon"></i>Edit</button>
+      <button id="delete" class="ui red button"><i class="remove icon"></i>Delete</button>
     </div>
 </div>
+
+<div class="ui card button" ng-click="$ctrl.startCreating();" ng-if="!$ctrl.isCreating" style="max-width: 250px;height: 250px">
+  <div class="content center aligned ">
+    <br><br><br>
+    <i class="add circle green massive icon"></i>
+  </div>
+</div>
+
+<!-- CREATE CARD -->
+<div class="ui card"  ng-if="$ctrl.isCreating" style="max-width: 250px;height: 250px">
+  <div class=" content center aligned ">
+    
+    <input id="name">
+      
+  </div>
+     
+  <div class="ui two buttons bottom attached mini center aligned">
+      <button id="ok" ng-click="" class="ui blue button"><i class="checkmark icon"></i>ok</button>
+      <button id="cancel" ng-click="$ctrl.cancelCreating()" class="ui red button"><i class="remove icon"></i>cancel</button>
+    </div>  
+</div>
+<!-- END CREATE CARD -->
 </div>
   
-
+<!-- EDIT MODAL -->
+<div class="ui basic modal small">
+   <div class="ui icon header">
+    <i class="pencil icon"></i>
+    Editing {{category.name}}
+  </div>
+  <div class="content">
+    
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button" ng-click="$ctrl.cancelEditing()">
+      <i class="remove icon"></i>
+      cancel
+    </div>
+  </div>
+</div>
+<script>
+  
+</script>
+<!-- END CREATE MODAL -->
   <!-- END BODY -->

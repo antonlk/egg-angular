@@ -29,6 +29,7 @@
     );
     */
 
+//DATOS
       $ctrl.categories = [
   {
     "id": "0",
@@ -66,16 +67,56 @@
     "link":"http://www.guymondailyherald.com/sites/default/files/field/image/apple-pie.jpg"
   }
 ];
+//FIN DATOS
 
+// CATEGOTY TRACKING
     $ctrl.currentCategory = null;
 
       $ctrl.setCurrentCategory = function(category){
        $ctrl.currentCategory = category;
         console.log($ctrl.currentCategory);
+
+        $ctrl.cancelCreating();
+        $ctrl.cancelEditing();
      }
 
      $ctrl.isCurrentCategory = function(category){
        return $ctrl.currentCategory !== null && category.name === $ctrl.currentCategory.name;
      }
+  
+
+  // END CATEGORY TRACKING
+
+  //CREATE / EDIT TRACKING
+
+  $ctrl.isCreating = false;
+  $ctrl.isEditing = false;
+
+  $ctrl.startCreating = function(){
+    $ctrl.isCreating= true;
+    $ctrl.isEditing=false;
+  }
+
+  $ctrl.cancelCreating=function(){
+    $ctrl.isCreating=false;
+  }
+
+  $ctrl.startEditing=function(){
+    $ctrl.isCreating= false;
+    $ctrl.isEditing=true;
+    // JAVASCRIPT DE SEMANTIC
+
+  $('.ui.modal').modal('show');
+  }
+  $ctrl.cancelEditing=function(){
+    $ctrl.isEditing=false;
+    // JAVASCRIPT DE SEMANTIC
+
+  $('.ui.modal').modal('hide');
+  }
+
+
+  // END CREATE/EDIT
+
   }
 })();
