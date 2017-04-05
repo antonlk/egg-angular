@@ -18,9 +18,11 @@
     });
 
   function BaseController() {
-    var ctrl = this;
+    var $ctrl = this;
     
+  
+  
 
-    
+ 
   }
 })();

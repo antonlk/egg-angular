@@ -1,4 +1,30 @@
 <div class="ui inverted huge menu">
-<a class="item green active">Galery</a>
-<a href="#" class="teal item" ng-repeat="category in $ctrl.categories">{{category.name}}</a>
+  <a class="item green active" ng-click="$ctrl.setCurrentCategory(null)">Galery</a>
+  <span ng-repeat="category in $ctrl.categories">
+  <a href="#" class="teal item" ng-class="{'active':$ctrl.isCurrentCategory(category)}" ng-click="$ctrl.setCurrentCategory(category)">
+   {{category.name}}
+  </a>
+  </span>
 </div>
+
+<!-- BODY -->
+  <div class="ui divider hidden"></div>
+
+<div class="ui stackable cards container">
+<div class="ui card" ng-repeat="image in $ctrl.links | 
+filter:$ctrl.currentCategory.name" style="max-width: 250px;">
+  <div class="image">
+    <img src="{{image.link}}" style="max-height: 250px;max-width: 250px;">
+  </div>
+  <div class="content">
+    <span class="header center aligned">{{image.title}}</span>
+  </div>
+  <div class="ui two buttons bottom attached mini center aligned">
+      <button class="ui blue button"><i class="pencil icon"></i>Edit</button>
+      <button class="ui red button"><i class="remove icon"></i>Delete</button>
+    </div>
+</div>
+</div>
+  
+
+  <!-- END BODY -->
