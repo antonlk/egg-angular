@@ -1,34 +1,13 @@
-(function () {
-  'use strict';
+(function() {
+'use strict';
 
 
   angular
-    .module('Categories')
-    .component('appCategory', {
-      //template:'',
-      templateUrl: 'app/categories/category.component.html',
-      controller: CategoryController,
-      bindings: {
-
-      }
-    })
-    ;
-
-  //CategoryController.$inject = ['CategoriesService'];
-  function CategoryController() {
-    var $ctrl = this;
-    /*
-   CategoryService.getCategories().then(
-      function onSuccess(res){
-        console.log(res.data);
-        $ctrl.categories=res.data;
-      },
-      function onError(res){
-        console.log("categorias fallo");
-      }
-    );
-    */
-
+    .module('App',[]).controller('Controller',BaseController);
+    
+function BaseController(){
+   var $ctrl = this;
+    
     //DATOS
     $ctrl.categories = [
       {
@@ -190,7 +169,16 @@
       $ctrl.cancelAddingCategory();
  }
 
+ $ctrl.deleteCategory = function(cat){
+      for (var i = 0; i < $ctrl.categories.length; i++) {
+        if (cat.id == $ctrl.categories[i].id) {
+          $ctrl.categories.splice(i,1);
+          break;
+        }
+      }
+    }
     // END ADD CATEGORY
 
-  }
+}
+
 })();

@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="App">
 
 <head>
   <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
@@ -7,18 +7,122 @@
   <title>Angular from Scratch</title>
 </head>
 
-<body ng-app="App">
-  <app-component></app-component>
+<body ng-controller="Controller as $ctrl">
+
+<!-- MENU -->
+<div class="ui inverted huge menu">
+  <a class="item green active" ng-click="$ctrl.setCurrentCategory(null)">Galery</a>
+  <span ng-repeat="category in $ctrl.categories">
+  <a href="#" class="teal item" ng-class="{'active':$ctrl.isCurrentCategory(category)}" ng-click="$ctrl.setCurrentCategory(category)">
+   {{category.name}} <i class="delete icon red" ng-click="$ctrl.deleteCategory(category)"></i>
+  </a>
+  </span>
+  <a href="#" class=" item button " ng-click="$ctrl.startAddingCategory()" ng-if="!$ctrl.addingCategory">
+    <i class="add circle green icon"></i>Add category</a>
+  <div class="ui mini action input" ng-if="$ctrl.addingCategory">
+    <input type="text" class="" placeholder="Category name" ng-model="newCategory.name">
+    <button class="ui green icon button" ng-click="$ctrl.addCategory(newCategory)"><i class="checkmark icon"></i></button>
+    <button class="ui red icon button" ng-click="$ctrl.cancelAddingCategory()"><i class="delete icon"></i></button>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="ui divider hidden"></div>
+
+<div class="ui stackable cards container">
+  <div class="ui card" ng-repeat="image in $ctrl.images | filter:$ctrl.currentCategory.name" style="max-width: 250px;">
+    <div class="image">
+      <img src="{{image.link}}" style="max-height: 250px;max-width: 250px;">
+    </div>
+    <div class="content">
+      <span class="header center aligned">{{image.title}}</span>
+    </div>
+    <div class="ui two buttons bottom attached mini center aligned">
+      <button id="edit" ng-click="$ctrl.setEditedImage(image);$ctrl.startEditing();" class="ui blue button"><i class="pencil icon"></i>Edit</button>
+      <button id="delete" ng-click="$ctrl.deleteImage(image)" class="ui red button"><i class="remove icon"></i>Delete</button>
+    </div>
+  </div>
+
+  <div class="ui card button" ng-click="$ctrl.startCreating();" ng-if="!$ctrl.isCreating" style="max-width: 250px;height:300px;">
+    <div class="content center aligned ">
+      <br><br><br><br><br>
+      <i class="add circle green massive icon"></i>
+    </div>
+  </div>
+
+  <!-- CREATE CARD -->
+
+  <div class="ui card" ng-if="$ctrl.isCreating" style="max-width: 250px;">
+    <div class=" content center aligned ">
+      <form class="ui form" role="form" ng-submit="$ctrl.createImage(newImage);$ctrl.cancelCreating()" novalidate>
+        <div class="field">
+          <label>Title</label>
+          <input type="text" name="title" placeholder="Title" id="newImageTitle" ng-model="newImage.title">
+        </div>
+        <div class="field">
+          <label>Image URL</label>
+          <input type="text" name="link" placeholder="Image URL" id="newImageURL" ng-model="newImage.link">
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <input type="text" name="category" placeholder="{{$ctrl.currentCategory.name}}" id="newImageCategory" ng-model="newImage.category">
+        </div>
+        <button id="ok" type="submit" class="ui green icon button"><i class="checkmark icon"></i></button>
+      </form>
+    </div>
+
+
+    <button id="cancel" ng-click="$ctrl.cancelCreating()" class="ui red button bottom attached"><i class="remove icon"></i>cancel</button>
+
+
+  </div>
+
+  <!-- END CREATE CARD -->
+</div>
+
+<!-- EDIT MODAL WINDOW -->
+<div class="ui basic modal small">
+  <div class="ui header green center aligned">
+    <i class="pencil icon"></i> Editing {{$ctrl.editedImage.title}}
+  </div>
+  <div class="content">
+    <form class="ui form inverted" role="form" ng-submit="$ctrl.updateImage($ctrl.editedImage)">
+      <div class="field">
+        <label>Title</label>
+        <input type="text" name="first-name" placeholder="{{$ctrl.editedImage.title}}" ng-model="$ctrl.editedImage.title">
+      </div>
+      <div class="field">
+        <label>Image URL</label>
+        <input type="text" name="last-name" placeholder="{{$ctrl.editedImage.link}}" ng-model="$ctrl.editedImage.link">
+      </div>
+      <div class="field">
+        <label>Category</label>
+        <input type="text" name="last-name" placeholder="{{$ctrl.editedImage.category}}" ng-model="$ctrl.editedImage.category">
+      </div>
+
+      <button class="ui green basic cancel inverted button" ng-click="$ctrl.updateImage($ctrl.editedImage)">
+      <i class="checkmark icon"></i> Save
+    </button>
+      <button class="ui red basic cancel inverted button right floated" type="button" ng-click="$ctrl.cancelEditing()">
+      <i class="remove icon"></i> Cancel
+    </button>
+    </form>
+
+  </div>
+
+</div>
+<!-- END CREATE MODAL -->
+<!-- END BODY -->
 
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
   <script src="node_modules/angular/angular.min.js"></script>
   <script src="semantic/semantic.min.js"></script>
-  <script src="app/app.js"></script>
-  <script src="app/app.component.js"></script>
-  <script src="app/categories/category.module.js"></script>
-  <script src="app/categories/category.component.js"></script>
+  
+  
+  <script src="app.component.js"></script>
+  
 
 
 </body>
