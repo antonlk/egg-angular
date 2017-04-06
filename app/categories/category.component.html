@@ -5,7 +5,13 @@
    {{category.name}}
   </a>
   </span>
-  <a href="#" class="ui item button disabled"><i class="add circle green icon"></i>Add category</a>
+  <a href="#" class=" item button " ng-click="$ctrl.startAddingCategory()" ng-if="!$ctrl.addingCategory">
+    <i class="add circle green icon"></i>Add category</a>
+  <div class="ui mini action input" ng-if="$ctrl.addingCategory">
+    <input type="text" class="" placeholder="Category name" ng-model="newCategory.name">
+    <button class="ui green icon button" ng-click="$ctrl.addCategory(newCategory)"><i class="checkmark icon"></i></button>
+    <button class="ui red icon button" ng-click="$ctrl.cancelAddingCategory()"><i class="delete icon"></i></button>
+  </div>
 </div>
 
 <!-- BODY -->
@@ -52,10 +58,10 @@
         <button id="ok" type="submit" class="ui green icon button"><i class="checkmark icon"></i></button>
       </form>
     </div>
-    
 
-      <button id="cancel" ng-click="$ctrl.cancelCreating()" class="ui red button bottom attached"><i class="remove icon"></i>cancel</button>
-   
+
+    <button id="cancel" ng-click="$ctrl.cancelCreating()" class="ui red button bottom attached"><i class="remove icon"></i>cancel</button>
+
 
   </div>
 
@@ -71,25 +77,25 @@
     <form class="ui form inverted" role="form" ng-submit="$ctrl.updateImage($ctrl.editedImage)">
       <div class="field">
         <label>Title</label>
-        <input type="text" name="first-name" placeholder="{{$ctrl.editedImage.title}}"  ng-model="$ctrl.editedImage.title">
+        <input type="text" name="first-name" placeholder="{{$ctrl.editedImage.title}}" ng-model="$ctrl.editedImage.title">
       </div>
       <div class="field">
         <label>Image URL</label>
-        <input type="text" name="last-name" placeholder="{{$ctrl.editedImage.link}}"  ng-model="$ctrl.editedImage.link">
+        <input type="text" name="last-name" placeholder="{{$ctrl.editedImage.link}}" ng-model="$ctrl.editedImage.link">
       </div>
       <div class="field">
         <label>Category</label>
         <input type="text" name="last-name" placeholder="{{$ctrl.editedImage.category}}" ng-model="$ctrl.editedImage.category">
       </div>
-      
-      <button class="ui green basic cancel inverted button" ng-click="$ctrl.updateImage($ctrl.editedImage)" >
+
+      <button class="ui green basic cancel inverted button" ng-click="$ctrl.updateImage($ctrl.editedImage)">
       <i class="checkmark icon"></i> Save
     </button>
-    <button class="ui red basic cancel inverted button right floated" type="button" ng-click="$ctrl.cancelEditing()">
+      <button class="ui red basic cancel inverted button right floated" type="button" ng-click="$ctrl.cancelEditing()">
       <i class="remove icon"></i> Cancel
     </button>
     </form>
-     
+
   </div>
 
 </div>

@@ -170,5 +170,27 @@
 
     // END DELETE IMAGE
 
+    // ADD CATEGORY
+
+    $ctrl.addingCategory = false;
+
+    $ctrl.startAddingCategory = function(){
+      $ctrl.addingCategory = true;
+    }
+
+    $ctrl.cancelAddingCategory = function(){
+      $ctrl.addingCategory = false;
+    }
+
+ $ctrl.addCategory = function(category){
+   category.id = $ctrl.categories.length;
+      $ctrl.categories.push(category);
+
+      console.log("category "+category.name+" created");
+      $ctrl.cancelAddingCategory();
+ }
+
+    // END ADD CATEGORY
+
   }
 })();
